@@ -7,9 +7,11 @@ pub const HEAD: &str = r#"<head>
     <title>{{page_title}} Page</title>
 </head>"#;
 
-pub const PAGES: [&str; 2] = [
+pub const NAV_LINKS: [&str; 4] = [
     r#"<a href="/">Home</a>"#,
-    r#"<a href="/about">About</a>"#
+    r#"<a href="/about">About</a>"#,
+    r#"<a href="/api/hello-get-msg">Hello API</a>"#,
+    r#"<a href="/http-client">HTTP Client</a>"#
 ];
 
 pub const HEADER: &str = r#"<header>
@@ -68,7 +70,7 @@ pub fn home(_req: Req, _params: Params) -> Reply {
         STYLE = STYLE,
         page_title = do_text("Home"), 
         HEADER = HEADER, 
-        navbar =  do_forloop(&PAGES, 
+        navbar =  do_forloop(&NAV_LINKS, 
             "<ul>", "<li>", "</li>", "</ul>"
         )
     );
@@ -110,7 +112,7 @@ pub fn about(_req: Req, _params: Params) -> Reply {
         STYLE = STYLE,
         page_title = "About",
         HEADER = HEADER,
-        navbar =  do_forloop(&PAGES, "<ul>", "<li>", "</li>", "</ul>"),
+        navbar =  do_forloop(&NAV_LINKS, "<ul>", "<li>", "</li>", "</ul>"),
         component_if = component_if,
         x = x // x must be defined after the component_if.
     );
@@ -123,12 +125,26 @@ pub fn about(_req: Req, _params: Params) -> Reply {
     })
 }
 
+fn hello(_req: Req, _params: Params) -> Reply {
+    boxed(async move {
+       let json_response = format!(r#"{{"message": "👋 Hello, World!"}}"#);
+        
+        Ok(Response::builder()
+            .header("Content-Type", "application/json")
+            .body(Body::from(json_response))
+            .unwrap())
+    })
+}
+
 #[tokio::main]
 async fn main() {
     let mut app = Fluxor::new();        // Initialize the application
 
     app.route(GET, "/", home);          // Set the home route
     app.route(GET, "/about", about);    // Set the about route
-
+    app.route(GET, "/api/hello-get-msg", hello);    // Set the api hello route
+    app.route(POST, "/api/hello-post-msg", hello);  // Set the api hello route
+    app.route(GET, "/http-client", serve_http_client); // A simple http client to test your application.
+    
     app.run("0.0.0.0", "10000").await;  // Start the HTTP server with specified host and port
 }
