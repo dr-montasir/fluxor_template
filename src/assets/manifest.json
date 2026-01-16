@@ -1,0 +1,21 @@
+{
+  "name": "Fluxor — Rust Web Framework",
+  "short_name": "Fluxor",
+  "description": "High-performance, versatile, asynchronous Rust web framework designed for data science and computing science applications.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/images/logo.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/images/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

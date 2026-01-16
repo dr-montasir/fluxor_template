@@ -1,0 +1,572 @@
+:root {
+    --color-bg: #f8fafc;
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+    --color-text-light-muted: #b5bfce;
+    --color-primary: #ea580c;
+    /* Orange 600 */
+    --color-primary-dark: #c2410c;
+    --color-accent: #38bdf8;
+    /* Sky 400 */
+    --color-white: #ffffff;
+    --color-code-bg: #0f172a;
+    --container-width: 1152px;
+}
+
+/* Base styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+/* Layout */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Header Block */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.header__nav {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .header__nav {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+}
+
+.header__link {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.header__link:hover {
+    color: var(--color-primary);
+}
+
+.header__link--button {
+    background: var(--color-text);
+    color: var(--color-white);
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+}
+
+.header__link--button:hover {
+    background: var(--color-primary);
+    color: var(--color-white);
+}
+
+.header__burger {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .header__burger {
+        display: none;
+    }
+}
+
+/* Mobile Menu Styles */
+.header__mobile-nav {
+    background: var(--color-white);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .header__mobile-nav {
+        display: none;
+    }
+}
+
+/* Badge Block */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background-color: var(--color-text);
+    color: var(--color-white);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem; 
+}
+
+.badge__label {
+    color: var(--color-primary);
+}
+
+.badge__label--accent {
+    color: var(--color-accent);
+}
+
+.badge__label--light-muted {
+    color: var(--color-text-light-muted);
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+/* Hide mobile on desktop, show on mobile */
+.mobile-only {
+  display: none;
+}
+
+/* Show mobile, hide desktop on small screens */
+@media (max-width: 767px) {
+  .mobile-only {
+    display: inline;
+  }
+  .desktop-only {
+    display: none;
+  }
+}
+
+.hero {
+   padding: 4rem 0 2rem; 
+}
+
+.analytics {
+    padding: 2rem 0 2rem;
+}
+
+.analytics h1 {
+    margin-top: 0;
+}
+
+/* Hero and Analytics Blocks */
+.hero, .analytics {
+    text-align: center;
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+.hero__title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 900;
+    margin: 0 0 1.5rem;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.hero__title-accent {
+    color: var(--color-primary);
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+}
+
+.hero__description {
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+}
+
+.hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
+@media (min-width: 640px) {
+    .hero__actions {
+        flex-direction: row;
+    }
+}
+
+.analytics p {
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.analytics__chart-container {
+  width: 75%;
+  margin: 0 auto;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+@media(max-width: 768px) {
+  .analytics__chart-container {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .analytics__table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .analytics p {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+.analytics__table-wrapper {
+  width: 100%;
+  overflow-x: auto; 
+  display: block;
+}
+
+.analytics__table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+  background-color: #fff; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.analytics__table thead {
+  background-color: #f1f5f9;
+}
+
+.analytics__table th {
+  padding: 12px 15px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.analytics__table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.analytics__table td {
+  padding: 12px 15px;
+  text-align: center;
+}
+
+.analytics__table tbody tr:hover {
+  background-color: #f0f4f8;
+}
+
+/* Button Block */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.btn--primary {
+    background: var(--color-text);
+    color: var(--color-white);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn--primary:hover {
+    background: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.btn--outline {
+    background: var(--color-white);
+    border: 1px solid #e2e8f0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.875rem;
+}
+
+/* Code-Editor Block */
+.code-editor {
+    max-width: 800px;
+    margin: 3rem auto;
+    background: var(--color-code-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.code-editor__header {
+    background: #1e293b;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.code-editor__dots {
+    display: flex;
+    gap: 6px;
+}
+
+.code-editor__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.code-editor__dot--red {
+    background: #ef4444;
+}
+
+.code-editor__dot--yellow {
+    background: #f59e0b;
+}
+
+.code-editor__dot--green {
+    background: #10b981;
+}
+
+.code-editor__copy {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.code-editor__content {
+    padding: 1.5rem;
+    margin: 0;
+    overflow-x: auto;
+    color: var(--color-accent);
+    font-size: 0.875rem;
+    text-align: left;
+}
+
+/* Features Block */
+.features {
+    padding: 6rem 0;
+    background: var(--color-white);
+    border-top: 1px solid #e2e8f0;
+}
+
+.features__grid {
+    display: grid;
+    gap: 3rem;
+}
+
+@media (min-width: 768px) {
+    .features__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.feature__title {
+    font-weight: 700;
+    font-style: italic;
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.feature__text {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+}
+
+/* Footer */
+.footer {
+    padding: 3rem 0;
+    text-align: center;
+    border-top: 1px solid #f1f5f9;
+}
+
+.footer__text {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Error 404 Styles */
+.error404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  text-align: center;
+  background-color: var(--color-bg);
+}
+
+.error404__title {
+  font-size: 10rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.error404__number {
+  display: inline-block;
+  color: #ea580c;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.error404__content {
+  max-width: 600px;
+  width: 100%;
+}
+
+.error404__message {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 1.5rem 0;
+  color: var(--color-text);
+}
+
+.error404__datetime {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1.5rem 0 2rem 0;
+  color: var(--color-text-muted);
+}
+
+.loadingscreen__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+ * Instructions for customizing the loading screen:
+ * 
+ * 1. To use the default spinner instead of the Fluxor logo:
+ *    - Uncommit (disable/remove) the existing spinner styles.
+ *    - Commit (add) the Fluxor logo styles or assets below.
+ * 
+ * 2. In the layout component:
+ *    - Remove the SVG logo placeholder:
+ *      <div class="loadingscreen__spinner">{{LOGO}}</div>
+ *    - Replace it with an empty spinner container:
+ *      <div class="loadingscreen__spinner"></div>
+ */
+
+/* Uncomment this block to use the default spinner instead of Fluxor logo
+.loadingscreen__spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+/*
+ * Styles for Fluxor logo spinner
+ */
+
+.loadingscreen__spinner {
+  backface-visibility: hidden;
+}
+
+.loadingscreen__spinner svg {
+  animation: spinY 1.25s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes spinY {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
