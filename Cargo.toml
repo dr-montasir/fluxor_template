@@ -5,4 +5,4 @@ edition = "2024"
 
 [dependencies]
 crator = "0.3.2"
-fluxor = "1.1.0"
+fluxor = "1.1.1"
