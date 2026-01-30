@@ -4,5 +4,5 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-crator = "0.6.0"
+crator = "0.7.1"
 fluxor = "1.1.2"

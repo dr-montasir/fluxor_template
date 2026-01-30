@@ -2,7 +2,7 @@ use fluxor::prelude::*;
 
 use crate::components::*;
 
-use crator::crate_data;
+use crator::{crate_data, block_on};
 
 const MAIN_ANALYTICS_CONTENT: &str = r####"<!-- Analytics Block -->
             <section class="analytics">
@@ -320,35 +320,35 @@ const SOURCES: &str = r##"<link rel="stylesheet" href="/css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>"##;
 
 pub fn analytics_page(_req: Req, _params: Params) -> Reply {
+    let cans_info = block_on(crate_data("cans")).expect("Failed to get crate info");
+    let fluxor_info = block_on(crate_data("fluxor")).expect("Failed to get crate info");
+    let mathlab_info = block_on(crate_data("mathlab")).expect("Failed to get crate info");
+
+    let cans_total_downloads = cans_info.total_downloads;
+    let cans_latest = cans_info.latest;
+    let cans_versions = cans_info.versions;
+    let cans_health_index = cans_total_downloads / cans_versions;
+    let cans_license = cans_info.license;
+    let cans_created_at = cans_info.created_at;
+    let cans_updated_at = cans_info.updated_at;
+
+    let fluxor_total_downloads = fluxor_info.total_downloads;
+    let fluxor_latest = fluxor_info.latest;
+    let fluxor_versions = fluxor_info.versions;
+    let fluxor_health_index = fluxor_total_downloads / fluxor_versions;
+    let fluxor_license = fluxor_info.license;
+    let fluxor_created_at = fluxor_info.created_at;
+    let fluxor_updated_at = fluxor_info.updated_at;
+
+    let mathlab_total_downloads = mathlab_info.total_downloads;
+    let mathlab_latest = mathlab_info.latest;
+    let mathlab_versions = mathlab_info.versions;
+    let mathlab_health_index = mathlab_total_downloads / mathlab_versions;
+    let mathlab_license = mathlab_info.license;
+    let mathlab_created_at = mathlab_info.created_at;
+    let mathlab_updated_at = mathlab_info.updated_at;
+
     boxed(async move {
-        let cans_info = crate_data("cans").await.expect("Failed to fetch cans data");
-        let fluxor_info = crate_data("fluxor").await.expect("Failed to fetch fluxor data");
-        let mathlab_info = crate_data("mathlab").await.expect("Failed to fetch mathlab data");
-
-        let cans_total_downloads = cans_info.total_downloads;
-        let cans_latest = cans_info.latest;
-        let cans_versions = cans_info.versions;
-        let cans_health_index = cans_total_downloads / cans_versions;
-        let cans_license = cans_info.license;
-        let cans_created_at = &cans_info.created_at[..10];
-        let cans_updated_at = &cans_info.updated_at[..10];
-
-        let fluxor_total_downloads = fluxor_info.total_downloads;
-        let fluxor_latest = fluxor_info.latest;
-        let fluxor_versions = fluxor_info.versions;
-        let fluxor_health_index = fluxor_total_downloads / fluxor_versions;
-        let fluxor_license = fluxor_info.license;
-        let fluxor_created_at = &fluxor_info.created_at[..10];
-        let fluxor_updated_at = &fluxor_info.updated_at[..10];
-
-        let mathlab_total_downloads = mathlab_info.total_downloads;
-        let mathlab_latest = mathlab_info.latest;
-        let mathlab_versions = mathlab_info.versions;
-        let mathlab_health_index = mathlab_total_downloads / mathlab_versions;
-        let mathlab_license = mathlab_info.license;
-        let mathlab_created_at = &mathlab_info.created_at[..10];
-        let mathlab_updated_at = &mathlab_info.updated_at[..10];
-
         // 1. Fail: Unacceptable, completely missed requirements.
         // 2. Poor: Well below expectations; significant shortcomings.
         // 3. Fair: Below average; meets minimum requirements but with deficiencies.
