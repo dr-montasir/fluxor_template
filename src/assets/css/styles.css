@@ -251,17 +251,13 @@ body {
 }
 
 .analytics__chart-container {
-  width: 75%;
+  width: 60%;
   margin: 0 auto;
-  padding-left: 150px;
-  padding-right: 150px;
 }
 
 @media(max-width: 768px) {
   .analytics__chart-container {
     width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 
   .analytics__table-wrapper {
@@ -272,6 +268,18 @@ body {
   .analytics p {
     padding-left: 10px;
     padding-right: 10px;
+  }
+}
+
+.analytics__canvas {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+@media(max-width: 768px) {
+  .analytics__canvas {
+    border-radius: 0px;
   }
 }
 
@@ -286,8 +294,7 @@ body {
   min-width: 600px;
   border-collapse: collapse;
   background-color: #fff; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-  border-radius: 8px;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
 
@@ -312,6 +319,23 @@ body {
 
 .analytics__table tbody tr:hover {
   background-color: #f0f4f8;
+}
+
+.analytics__formula {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.analytics__formula-math {
+    font-size: 1.15rem;
+}
+
+.analytics__buttons-container {
+    text-align: center; 
+    margin: 25px 10px 35px 10px; 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px;
 }
 
 /* Button Block */
@@ -342,6 +366,86 @@ body {
     border: 1px solid #e2e8f0;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.875rem;
+}
+
+.btn--simulate {
+    padding: 12px 24px; 
+    background: #61dafb; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    transition: 0.3s;
+}
+
+.btn--reset {
+    padding: 12px 24px; 
+    background: #f0f0f0; 
+    color: #333; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    transition: 0.3s;
+}
+
+.btn--simulate:hover, .btn--reset:hover {
+    transform: translateY(-2px);
+}
+
+.analytics__report-section {
+    max-width: 850px; 
+    margin: 0 auto; 
+    padding: 25px; 
+    background: #fff; 
+    border-radius: 10px 10px 0 0;
+}
+
+.analytics__doc {
+    border-radius: 8px;
+}
+
+.analytics__doc-title {
+    margin-top: 10px;
+    color: #61dafb;
+}
+
+.analytics__doc-title--center {
+    text-align: center; 
+}
+
+.analytics__list {
+    list-style: disc; 
+    margin-left: 20px
+}
+
+.analytics__methods {
+    list-style: disc; 
+    padding: 0 20px;
+}
+
+.analytics__method {
+    margin-bottom: 15px;
+}
+
+.analytics__method-description {
+    margin-bottom: 10px;
+}
+
+.analytics__growth-report {
+    background: #fafafa; 
+    padding: 20px; 
+    border: 1px solid #eee; 
+    border-radius: 4px;
+}
+
+.analytics__observations {
+    text-align: left;
+}
+
+.analytics__observation {
+    margin: 10px 0;
 }
 
 /* Code-Editor Block */
